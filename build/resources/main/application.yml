@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://dpg-d0hodrali9vc73ea6370-a.oregon-postgres.render.com:5432/tatkal?sslmode=require
+    username: tatkal_user
+    password: s9DGDo9zyWl3bcDevSOYGc6n8tBGIBUg
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
