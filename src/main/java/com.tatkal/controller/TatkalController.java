@@ -8,41 +8,50 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+<<<<<<< Updated upstream
+=======
+//import utils.JwtUtil;
+>>>>>>> Stashed changes
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 @RestController
+<<<<<<< Updated upstream
 @RequestMapping("/tatkal")
+=======
+@RequestMapping("External")
+>>>>>>> Stashed changes
 public class TatkalController{
 
     @Autowired
     LoginService loginService;
 
-    @Autowired
-    JwtUtil jwtUtil;
+//    @Autowired
+//    JwtUtil jwtUtil;
+
     @Autowired
     TrainDetails trainDetails;
 
-    @PostMapping("/login")
-    public ResponseEntity<?> invokeLogin(@RequestBody UserDAO userDAO){
-
-        boolean isAuthenticated = loginService.authenticate(userDAO.getUserName(), userDAO.getPassword());
-        if(isAuthenticated) {
-            String token = jwtUtil.generateToken(userDAO.getUserName());
-            Map<String, Object> response = new HashMap<>();
-            response.put("token", token);
-            response.put("message", "Login Successful");
-            response.put("user", userDAO.getUserName());
-
-            return ResponseEntity.ok(response);
-        }
-
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-          .body(Collections.singletonMap("error", "Invalid username or password"));
-
-    }
+//    @PostMapping("/login")
+//    public ResponseEntity<?> invokeLogin(@RequestBody UserDAO userDAO){
+//
+//        boolean isAuthenticated = loginService.authenticate(userDAO.getUserName(), userDAO.getPassword());
+//        if(isAuthenticated) {
+//            String token = jwtUtil.generateToken(userDAO.getUserName());
+//            Map<String, Object> response = new HashMap<>();
+//            response.put("token", token);
+//            response.put("message", "Login Successful");
+//            response.put("user", userDAO.getUserName());
+//
+//            return ResponseEntity.ok(response);
+//        }
+//
+//        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+//          .body(Collections.singletonMap("error", "Invalid username or password"));
+//
+//    }
 
     @GetMapping("/getTrainById")
     public ResponseEntity<?> getTrainDetailsById(@RequestParam("TrainId") String trainId){

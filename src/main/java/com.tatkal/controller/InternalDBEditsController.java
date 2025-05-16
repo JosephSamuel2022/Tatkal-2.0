@@ -5,20 +5,29 @@ import com.tatkal.dao.TrainDAO;
 import com.tatkal.service.train.TrainDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
-@RequestMapping("/InternalUseOnly")
+@RequestMapping("InternalUseOnly")
 public class InternalDBEditsController {
 
     @Autowired
     TrainDetails trainDetails;
 
-    @GetMapping("/addTrainDetails")
-    public ResponseEntity<?> addTrainDetails(@RequestBody TrainDAO train){
+    @PostMapping("/addTrainDetails")
+    public ResponseEntity<?> addTrainDetails(@RequestBody List<TrainDAO> train){
         return trainDetails.addTrainDetails(train);
+    }
+
+    @GetMapping("/getTrainDetails")
+    public ResponseEntity<?> getTrainDetails(){
+        return trainDetails.getTrainDetails();
+    }
+
+    @DeleteMapping("/deleteTrainDetailsById")
+    public ResponseEntity<?> deleteTrainDetailsById(@RequestParam("trainId") String trainId){
+        return trainDetails.deleteTrainDetailsById(trainId);
     }
 }

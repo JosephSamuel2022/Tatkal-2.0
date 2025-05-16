@@ -4,6 +4,10 @@ spring:
     username: tatkal_user
     password: s9DGDo9zyWl3bcDevSOYGc6n8tBGIBUg
     driver-class-name: org.postgresql.Driver
+  security:
+    user:
+      name: admin
+      password: admin123
 
   jpa:
     hibernate:
@@ -11,3 +15,11 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+logging:
+  level:
+    root: INFO
+    org.springframework.web: DEBUG
+    org.springframework.security: DEBUG
+    com.tatkal: DEBUG  # Your base package (optional, for app-specific logs)
+
+

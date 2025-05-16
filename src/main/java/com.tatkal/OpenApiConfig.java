@@ -10,16 +10,18 @@ public class OpenApiConfig {
     @Bean
     public GroupedOpenApi group1Api() {
         return GroupedOpenApi.builder()
-                .group("/InternalUseOnly")
-                .packagesToScan("/api/v1/**")
+                .group("InternalUseOnly")
+                .packagesToScan("com.tatkal.controller")
+                .pathsToMatch("/InternalUseOnly/**")
                 .build();
     }
 
     @Bean
     public GroupedOpenApi group2Api() {
         return GroupedOpenApi.builder()
-                .group("/External")
-                .packagesToScan("/api/v1/**")
+                .group("External")
+                .packagesToScan("com.tatkal.controller")
+                .pathsToMatch("/External/**")
                 .build();
     }
 }

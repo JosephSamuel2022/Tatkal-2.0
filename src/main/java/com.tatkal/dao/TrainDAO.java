@@ -12,7 +12,9 @@ import lombok.*;
 @Builder
 @Entity
 public class TrainDAO {
+
     @Id
-    private String trainName;
     private String trainId;
+    private String trainName;
+
 }
