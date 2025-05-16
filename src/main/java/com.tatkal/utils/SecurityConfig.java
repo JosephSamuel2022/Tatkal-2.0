@@ -1,4 +1,4 @@
-package utils;
+package com.tatkal.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -26,7 +26,7 @@ public class SecurityConfig {
       http
         .csrf(csrf -> csrf.disable())
         .authorizeHttpRequests(auth -> auth
-          .requestMatchers("/login").permitAll()
+          .requestMatchers("/tatkal/login").permitAll()
           .anyRequest().authenticated()
         )
         .sessionManagement(session ->

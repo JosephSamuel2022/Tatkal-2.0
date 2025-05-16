@@ -1,16 +1,21 @@
-package utils;
+package com.tatkal.utils;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Component;
 
+import java.nio.charset.StandardCharsets;
+import java.security.Key;
 import java.util.Date;
 
 @Component
 public class JwtUtil {
-      private String secret = "tatkal-secret-key"; // This should be in a properties file or stored as environment variable
+      private String secret = "tatkal-two-point-o-signature-key"; // This should be in a properties file or stored as environment variable
 
-      /*
+      private final Key key = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
+
+  /*
        * This method is used to generate the token
        * Uses Hash based MAC to verify Integrity (i.e., to verify if the token is not tampered)
        * @param username
@@ -21,12 +26,12 @@ public class JwtUtil {
           .setSubject(username)
           .setIssuedAt(new Date())
           .setExpiration(new Date(System.currentTimeMillis() + 86400000))
-          .signWith(SignatureAlgorithm.HS256, secret)
+          .signWith(key, SignatureAlgorithm.HS256)
           .compact();
       }
 
       public String extractUsername(String token) {
-        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getSubject();
+        return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody().getSubject();
       }
 
       /*
@@ -37,7 +42,7 @@ public class JwtUtil {
        */
       public boolean validateToken(String token) {
         try {
-          Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
+          Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
           return true;
         } catch (Exception e) {
           return false;
