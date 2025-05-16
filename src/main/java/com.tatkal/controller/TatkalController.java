@@ -3,6 +3,7 @@ package com.tatkal.controller;
 import com.tatkal.model.UserDAO;
 import com.tatkal.service.Login.LoginService;
 import com.tatkal.service.train.TrainDetails;
+import com.tatkal.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("External")
+@RequestMapping("tatkal")
 public class TatkalController{
 
     @Autowired
