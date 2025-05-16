@@ -9,6 +9,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+//import utils.JwtUtil;
+>>>>>>> Stashed changes
 =======
 //import utils.JwtUtil;
 >>>>>>> Stashed changes
@@ -19,7 +23,11 @@ import java.util.Map;
 
 @RestController
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 @RequestMapping("/tatkal")
+=======
+@RequestMapping("External")
+>>>>>>> Stashed changes
 =======
 @RequestMapping("External")
 >>>>>>> Stashed changes
