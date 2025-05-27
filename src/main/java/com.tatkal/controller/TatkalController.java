@@ -2,6 +2,7 @@ package com.tatkal.controller;
 
 import com.tatkal.dao.PaymentDAO;
 import com.tatkal.model.StripeResponse;
+import com.tatkal.model.TrainAvailabilityDetails;
 import com.tatkal.model.UserDAO;
 import com.tatkal.service.Login.LoginService;
 import com.tatkal.service.Payment.StripeService;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -66,6 +68,10 @@ public class TatkalController{
         return stripeService.getPaymentStatus(sessionId);
     }
 
+    @GetMapping("/getTrainDetailsBySourceAndDestination")
+    public ResponseEntity<?> getTrainDetailsBySourceAndDestination(@RequestParam String Source, @RequestParam String Destination) throws Exception{
+        return trainDetails.getTrainDetailsBySourceAndDestination(Source,Destination);
+    }
 
 
 }

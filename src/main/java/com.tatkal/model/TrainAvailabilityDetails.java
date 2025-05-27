@@ -3,7 +3,6 @@ package com.tatkal.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.text.DateFormat;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -20,15 +19,15 @@ public class TrainAvailabilityDetails {
     @Id
     private String trainId;
     @Id
-    private DateFormat date;
+    private LocalDate date;
 
     private LocalDate travelDate;
     private String trainName;
     private String source;
     private String destination;
 
-    @ElementCollection
-    private List<String> stops;
+
+    private String[] stops;
 
     // Regular Quota Seat Totals
     private int totalSeatsSL;    // Sleeper

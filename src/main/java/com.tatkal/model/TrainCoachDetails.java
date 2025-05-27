@@ -3,9 +3,9 @@ package com.tatkal.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
-import java.text.DateFormat;
 
 @Getter
 @Setter
@@ -20,7 +20,7 @@ public class TrainCoachDetails {
     @Id
     private String trainId;
     @Id
-    private DateFormat date;
+    private LocalDate date;
     private String coachType;
     private String coach;
     private int totalSeats;
