@@ -13,6 +13,8 @@ repositories {
 }
 
 dependencies {
+
+    implementation 'com.stripe:stripe-java:24.8.0'  // Stripe Java SDK for payment processing
     // Spring Boot Starter Web for REST API and Web applications
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
