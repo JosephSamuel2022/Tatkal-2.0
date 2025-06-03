@@ -22,4 +22,8 @@ logging:
     org.springframework.security: DEBUG
     com.tatkal: DEBUG  # Your base package (optional, for app-specific logs)
 
-
+stripe:
+  secret:
+    key: sk_test_51RSc7IP6TRZTEjxOJ1zi7L6l6BcbkQ90SoQeaFbKeG8l487ymTyo0TBZDbGbNX0P9fjRq1E3A0pN06dB8ZGehfaD00yNYwyU3H
+  success-url: http://localhost:3000/success
+  cancel-url: http://localhost:3000/cancel

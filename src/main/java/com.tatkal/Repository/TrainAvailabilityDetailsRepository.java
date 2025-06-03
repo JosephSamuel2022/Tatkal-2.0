@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -26,11 +27,13 @@ public interface TrainAvailabilityDetailsRepository extends JpaRepository<TrainA
             :source = ANY(stops) 
             AND :destination = ANY(stops) 
             AND array_position(stops, :source) < array_position(stops, :destination)
+            AND date = :date
         """,
             nativeQuery = true
     )
     List<TrainAvailabilityDetails> findMatchingRoutes(
             @Param("source") String source,
-            @Param("destination") String destination
+            @Param("destination") String destination,
+            @Param("date") LocalDate date
     );
 }

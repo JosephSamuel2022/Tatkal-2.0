@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.*;
 
 @Service
@@ -62,9 +63,9 @@ public class TrainDetails {
         }
     }
 
-    public ResponseEntity<?> getTrainDetailsBySourceAndDestination(String source, String destination) throws Exception {
+    public ResponseEntity<?> getTrainDetailsBySourceAndDestination(String source, String destination, LocalDate Date) throws Exception {
         try {
-            List<TrainAvailabilityDetails> result = trainDetails.findMatchingRoutes(source, destination);
+            List<TrainAvailabilityDetails> result = trainDetails.findMatchingRoutes(source, destination,Date);
             log.info("Result" + result.toString());
             if (result.isEmpty()) {
                 return new ResponseEntity<>(Collections.singletonMap("message", "No Train Details Found for the Source and Destination"), HttpStatus.NOT_FOUND);

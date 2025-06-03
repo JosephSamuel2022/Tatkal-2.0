@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -69,8 +70,8 @@ public class TatkalController{
     }
 
     @GetMapping("/getTrainDetailsBySourceAndDestination")
-    public ResponseEntity<?> getTrainDetailsBySourceAndDestination(@RequestParam String Source, @RequestParam String Destination) throws Exception{
-        return trainDetails.getTrainDetailsBySourceAndDestination(Source,Destination);
+    public ResponseEntity<?> getTrainDetailsBySourceAndDestination(@RequestParam String Source, @RequestParam String Destination,@RequestParam LocalDate Date) throws Exception{
+        return trainDetails.getTrainDetailsBySourceAndDestination(Source,Destination,Date);
     }
 
 
