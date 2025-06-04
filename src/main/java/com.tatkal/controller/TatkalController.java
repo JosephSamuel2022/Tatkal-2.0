@@ -83,6 +83,14 @@ public class TatkalController{
 
         return trainDetails.getTrainAvailability(source, destination, date, type);
     }
+    @GetMapping("/getTrain")
+    public TrainAvailabilityDetails getTrainById(
+            @RequestParam String trainId,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date)
+    {
+
+        return trainDetails.getTrainById(trainId, date);
+    }
     @PostMapping("/payment")
     public ResponseEntity<StripeResponse> makePayment(@RequestBody PaymentDAO paymentRequest) {
         StripeResponse response = stripeService.doPayment(paymentRequest);

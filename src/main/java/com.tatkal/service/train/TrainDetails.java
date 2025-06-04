@@ -73,7 +73,7 @@ public class TrainDetails {
     }
     public List<com.tatkal.dto.TrainAvailabilityDTO> getTrainAvailability(String source, String destination, LocalDate date, String reservationType) {
         List<TrainAvailabilityDetails> trains = trainAvailability.findBySourceAndDestinationAndDate(source, destination, date);
-        trains.sort(Comparator.comparing(TrainAvailabilityDetails::getTravelDate));
+        trains.sort(Comparator.comparing(TrainAvailabilityDetails::getDate));
 
         return trains.stream().map(train -> {
             TrainAvailabilityDTO dto = new TrainAvailabilityDTO();
@@ -81,7 +81,7 @@ public class TrainDetails {
             dto.setTrainName(train.getTrainName());
             dto.setSource(train.getSource());
             dto.setDestination(train.getDestination());
-            dto.setTravelDate(train.getTravelDate());
+            dto.setTravelDate(train.getDate());
 
             if ("tatkal".equalsIgnoreCase(reservationType)) {
                 dto.setSL(train.getTotalTatkalSeatsSL());
@@ -101,5 +101,8 @@ public class TrainDetails {
 
             return dto;
         }).collect(Collectors.toList());
+    }
+    public TrainAvailabilityDetails getTrainById(String trainId, LocalDate date){
+        return trainAvailability.findByTrainIdAndDate(trainId,date);
     }
 }
