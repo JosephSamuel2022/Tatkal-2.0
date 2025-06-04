@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.text.DateFormat;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Getter
@@ -21,8 +22,7 @@ public class TrainAvailabilityDetails {
     private String trainId;
     @Id
     private LocalDate date;
-
-    private LocalDate travelDate;
+    private LocalTime time;
     private String trainName;
     private String source;
     private String destination;
