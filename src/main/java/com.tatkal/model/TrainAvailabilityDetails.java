@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Getter
@@ -20,14 +21,12 @@ public class TrainAvailabilityDetails {
     private String trainId;
     @Id
     private LocalDate date;
-
-    private LocalDate travelDate;
+    private LocalTime time;
     private String trainName;
     private String source;
     private String destination;
 
-
-    private String[] stops;
+    private String [] stops;
 
     // Regular Quota Seat Totals
     private int totalSeatsSL;    // Sleeper

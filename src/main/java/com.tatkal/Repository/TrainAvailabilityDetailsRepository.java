@@ -12,6 +12,9 @@ import java.util.List;
 
 @Repository
 public interface TrainAvailabilityDetailsRepository extends JpaRepository<TrainAvailabilityDetails, TrainCoachDetailsId> {
+    List<TrainAvailabilityDetails> findBySourceAndDestinationAndDate(String source, String destination, LocalDate date);
+    TrainAvailabilityDetails findByTrainIdAndDate(String trainId, LocalDate date);
+
 
     /**
      * Finds train availability details where:
