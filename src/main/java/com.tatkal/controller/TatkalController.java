@@ -101,4 +101,11 @@ public class TatkalController{
     public String getPaymentStatus(@RequestParam("sessionId") String sessionId) {
         return stripeService.getPaymentStatus(sessionId);
     }
+
+    @GetMapping("/getTrainDetailsBySourceAndDestination")
+    public ResponseEntity<?> getTrainDetailsBySourceAndDestination(@RequestParam String Source, @RequestParam String Destination,@RequestParam LocalDate Date) throws Exception{
+        return trainDetails.getTrainDetailsBySourceAndDestination(Source,Destination,Date);
+    }
+
+
 }

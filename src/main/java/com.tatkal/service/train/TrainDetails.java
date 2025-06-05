@@ -1,5 +1,6 @@
 package com.tatkal.service.train;
 
+import com.tatkal.Exception.CommonException;
 import com.tatkal.Repository.Train;
 import com.tatkal.Repository.TrainAvailabilityDetailsRepository;
 import com.tatkal.dao.TrainDAO;
@@ -15,6 +16,7 @@ import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
+
 @Service
 public class TrainDetails {
 
@@ -23,6 +25,10 @@ public class TrainDetails {
     Train train;
     @Autowired
     TrainAvailabilityDetailsRepository trainAvailability;
+
+    @Autowired
+    TrainAvailabilityDetailsRepository trainDetails;
+
     public ResponseEntity<?> getTrainDetailsById(String trainId){
             Optional<TrainDAO> result=train.findById(trainId);
             if (result.isPresent()){
@@ -58,6 +64,21 @@ public class TrainDetails {
         }
         else{
             return ResponseEntity.status(200).body(result);
+        }
+    }
+
+    public ResponseEntity<?> getTrainDetailsBySourceAndDestination(String source, String destination, LocalDate Date) throws Exception {
+        try {
+            List<TrainAvailabilityDetails> result = trainDetails.findMatchingRoutes(source, destination,Date);
+            log.info("Result" + result.toString());
+            if (result.isEmpty()) {
+                return new ResponseEntity<>(Collections.singletonMap("message", "No Train Details Found for the Source and Destination"), HttpStatus.NOT_FOUND);
+            } else {
+                return ResponseEntity.ok(result);
+            }
+        }
+        catch (Exception e){
+            throw new CommonException("Exception occurred While SQL Query",e);
         }
     }
     public ResponseEntity<?> getTrainAvailabilityStatus() {
