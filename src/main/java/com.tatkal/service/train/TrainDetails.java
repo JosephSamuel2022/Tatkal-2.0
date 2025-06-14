@@ -3,6 +3,8 @@ package com.tatkal.service.train;
 import com.tatkal.Exception.CommonException;
 import com.tatkal.Repository.Train;
 import com.tatkal.Repository.TrainAvailabilityDetailsRepository;
+import com.tatkal.Repository.TrainCoachDetailsRepository;
+import com.tatkal.dao.TrainCoachDetails;
 import com.tatkal.dao.TrainDAO;
 import com.tatkal.model.TrainAvailabilityDetails;
 import org.slf4j.Logger;
@@ -28,6 +30,9 @@ public class TrainDetails {
 
     @Autowired
     TrainAvailabilityDetailsRepository trainDetails;
+
+    @Autowired
+    TrainCoachDetailsRepository trainCoachDetails;
 
     public ResponseEntity<?> getTrainDetailsById(String trainId){
             Optional<TrainDAO> result=train.findById(trainId);
@@ -125,5 +130,17 @@ public class TrainDetails {
     }
     public TrainAvailabilityDetails getTrainById(String trainId, LocalDate date){
         return trainAvailability.findByTrainIdAndDate(trainId,date);
+    }
+
+    public Map<String, List<Integer>> getSeatsList(String trainId, LocalDate journeyDate, String coachType) {
+        TrainCoachDetails details = trainCoachDetails
+          .findByTrainIdAndJourneyDateAndCoachType(trainId, journeyDate, coachType)
+          .orElseThrow(() -> new RuntimeException("Train coach details not found!"));
+
+        Map<String, List<Integer>> seatsMap = new HashMap<>();
+        seatsMap.put("upper", details.getUpperBalanceSeatNo());
+        seatsMap.put("lower", details.getLowerBalanceSeatNo());
+
+        return seatsMap;
     }
 }
