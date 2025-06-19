@@ -138,8 +138,9 @@ public class TrainDetails {
           .orElseThrow(() -> new RuntimeException("Train coach details not found!"));
 
         Map<String, List<Integer>> seatsMap = new HashMap<>();
-        seatsMap.put("upper", details.getUpperBalanceSeatNo());
-        seatsMap.put("lower", details.getLowerBalanceSeatNo());
+        seatsMap.put("upper", new ArrayList<>(details.getUpperBalanceSeatNo()));
+        seatsMap.put("lower", new ArrayList<>(details.getLowerBalanceSeatNo()));
+        seatsMap.put("middle", new ArrayList<>(details.getMiddleBalanceSeatNo()));
 
         return seatsMap;
     }

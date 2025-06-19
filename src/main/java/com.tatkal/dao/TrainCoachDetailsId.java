@@ -12,6 +12,6 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class TrainCoachDetailsId implements Serializable {
   private String trainId;
-  private LocalDate date;
+  private LocalDate journeyDate;
   private String coachType;
 }

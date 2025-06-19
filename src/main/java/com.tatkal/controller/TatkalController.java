@@ -108,10 +108,10 @@ public class TatkalController{
         return trainDetails.getTrainDetailsBySourceAndDestination(Source,Destination,Date);
     }
 
-    @GetMapping("/assignSeats")
+    @PostMapping("/assignSeats")
     public ResponseEntity<List<Integer>> assignSeats(
       @RequestParam String trainId,
-      @RequestParam LocalDate date,
+      @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
       @RequestParam String coachType,
       @RequestBody List<String> passengerPrefs) {
         Map<String, List<Integer>> seats = trainDetails.getSeatsList(trainId, date, coachType);

@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -22,7 +23,7 @@ public class TrainCoachDetails {
 
   @Id
   @Column(name = "journey_date", nullable = false)
-  private LocalDate date;
+  private LocalDate journeyDate;
 
   @Id
   @Column(name = "coach_type", nullable = false)
@@ -44,7 +45,7 @@ public class TrainCoachDetails {
     }
   )
   @Column(name = "seat_number")
-  private List<Integer> upperBalanceSeatNo;
+  private Set<Integer> upperBalanceSeatNo;
 
   @ElementCollection
   @CollectionTable(
@@ -56,7 +57,7 @@ public class TrainCoachDetails {
     }
   )
   @Column(name = "seat_number")
-  private List<Integer> lowerBalanceSeatNo;
+  private Set<Integer> lowerBalanceSeatNo;
 
   @ElementCollection
   @CollectionTable(
@@ -68,7 +69,7 @@ public class TrainCoachDetails {
     }
   )
   @Column(name = "seat_number")
-  private List<Integer> middleBalanceSeatNo;
+  private Set<Integer> middleBalanceSeatNo;
 
 
 }
