@@ -1,7 +1,7 @@
 package com.tatkal.Repository;
 
 import com.tatkal.model.TrainAvailabilityDetails;
-import com.tatkal.model.TrainCoachDetailsId;
+import com.tatkal.model.TrainAvailabilityDetailsId;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Repository
-public interface TrainAvailabilityDetailsRepository extends JpaRepository<TrainAvailabilityDetails, TrainCoachDetailsId> {
+public interface TrainAvailabilityDetailsRepository extends JpaRepository<TrainAvailabilityDetails, TrainAvailabilityDetailsId> {
     List<TrainAvailabilityDetails> findBySourceAndDestinationAndDate(String source, String destination, LocalDate date);
     TrainAvailabilityDetails findByTrainIdAndDate(String trainId, LocalDate date);
 
