@@ -8,6 +8,7 @@ import com.tatkal.service.Payment.StripeService;
 import com.tatkal.service.train.TrainDetails;
 import com.tatkal.utils.ApiResponse;
 import com.tatkal.utils.JwtUtil;
+import com.tatkal.utils.TatkalSeatAssignment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -107,5 +108,20 @@ public class TatkalController{
         return trainDetails.getTrainDetailsBySourceAndDestination(Source,Destination,Date);
     }
 
+    @PostMapping("/assignSeats")
+    public ResponseEntity<List<Integer>> assignSeats(
+      @RequestParam String trainId,
+      @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
+      @RequestParam String coachType,
+      @RequestBody List<String> passengerPrefs) {
+        Map<String, List<Integer>> seats = trainDetails.getSeatsList(trainId, date, coachType);
+        List<List<Integer>> seatTypes = List.of(
+          seats.getOrDefault("lower", Collections.emptyList()),
+          seats.getOrDefault("middle", Collections.emptyList()),
+          seats.getOrDefault("upper", Collections.emptyList())
+        );
+        List<Integer> assignedSeats = TatkalSeatAssignment.assignSeatsWithProximity(seatTypes, passengerPrefs);
+        return ResponseEntity.ok(assignedSeats);
+    }
 
 }
